@@ -29,6 +29,12 @@ int main() {
     displayMarks(marks, size);
     
     // Step 2: Insert one new mark at a given position
+    // Check if array has space for new element
+    if (size >= MAX_SIZE) {
+        printf("\nError: Cannot insert more students. Array is full!\n");
+        return 1;
+    }
+    
     printf("\nEnter the mark of the new student: ");
     scanf("%d", &newMark);
     
@@ -72,6 +78,12 @@ void takeMarks(int marks[], int size) {
  *   position - position where mark should be inserted (1-based indexing)
  */
 void insertMark(int marks[], int *size, int mark, int position) {
+    // Safety check - ensure we don't exceed array bounds
+    if (*size >= MAX_SIZE) {
+        printf("Error: Array is full, cannot insert.\n");
+        return;
+    }
+    
     // Shift elements to the right from the insertion position
     for (int i = *size; i >= position; i--) {
         marks[i] = marks[i - 1];
